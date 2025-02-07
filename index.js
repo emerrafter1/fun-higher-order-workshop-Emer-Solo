@@ -106,13 +106,33 @@ function composeU(unaryFunc1,unaryFunc2) { //composeU(square, double)
 
 }
 
-const squareThenDouble = composeU(square, double);
-expect(squareThenDouble(5)).toBe(50)
+function composeB(binaryFunction1, binaryFunction2) {
+
+  function composedFunction(x,y,z){
+     // return value of first binary function
+    return binaryFunction2(binaryFunction1(x,y),z)
+
+  }
+  return composedFunction
+
+}
+
+//binaryFunction1 => add
+//binaryFunction2 => multiply
 
 
-function composeB() {}
+function limit(functionToBeCalled, numOfTimes) {
 
-function limit() {}
+  function binaryFunction(){
+      for(let i = 0; i<numOfTimes; i++){
+        numOfTimes--
+        functionToBeCalled()
+      }
+  }
+
+  return binaryFunction
+
+}
 
 function from() {}
 
