@@ -134,7 +134,14 @@ function limit(functionToBeCalled, numOfTimes) {
 
 }
 
-function from() {}
+function from(startingValue) {
+
+  function consecutiveValue(){
+    return startingValue++
+  }
+  return consecutiveValue;
+
+}
 
 function to() {}
 

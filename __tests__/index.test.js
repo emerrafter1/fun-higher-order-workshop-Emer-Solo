@@ -186,7 +186,7 @@ describe('Higher Order Functions', () => {
         expect(add2NumsMultiplyBy3rd(2, 3, 7)).toBe(multiply(add(2, 3), 7));
       });
     });
-    describe.only('limit', () => {
+    describe('limit', () => {
       it('returns a function on first invocation', () => {
         const useAddOnceOnly = limit(add, 1);
         expect(typeof useAddOnceOnly).toBe('function');
@@ -218,7 +218,7 @@ describe('Higher Order Functions', () => {
   });
 
   describe('Generator Functions', () => {
-    describe('from', () => {
+    describe.only('from', () => {
       it('returns a function on first invocation', () => {
         const index = from();
         expect(typeof index).toBe('function');
