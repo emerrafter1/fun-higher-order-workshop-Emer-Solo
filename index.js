@@ -1,20 +1,92 @@
-function identity() {}
+function identity(input) {
+  return input
+}
 
-function identityF() {}
+function identityF(input) {
+ return function(){
+  return identity(input)
+ }
+}
 
-function add() {}
+function add(num1, num2) {
+  return num1 + num2
+}
 
-function subtract() {}
+function subtract(num1, num2) {
+  return num1 - num2
+}
 
-function multiply() {}
+function multiply(num1, num2) {
+  return num1 * num2
+}
 
-function increment() {}
+function increment(num1) {
+  return add(num1,1)
+}
 
-function addF() {}
+function addF(num1) {
 
-function curry() {}
+  function add(num2){
+    return add(num1, num2)
+  }
 
-function liftF() {}
+  return add;
+}
+
+function curry(binaryFunction, input) {
+  
+  function feeder(x){
+    return binaryFunction(x, input)
+  }
+
+  return feeder;
+}
+
+
+
+function liftF(binaryFunction) {
+  function feeder(x){
+      function feeder2(y){
+      return binaryFunction(x,y)
+      }
+      return feeder2
+    
+  }
+  return feeder;
+  
+}
+
+// liftF(add) = feeder(x){
+//   function feeder2(y){
+//   return add(x,y)
+//   }
+//   return feeder2
+
+// }
+
+// liftF(add)(1) = feeder2(y){
+//   return add(1,y)
+//   }
+//   return feeder2
+
+//   liftF(add)(1)(6) = add(1,6)
+
+
+function once(inputFunction) {
+  let hasBeenCalled = false;
+  let output;
+
+   function secondFunction () {
+    if (hasBeenCalled === false) {
+      hasBeenCalled = true; //checks has function been called before
+      output = inputFunction();
+    }
+    return output; //result of returnHello()
+  };
+
+  return secondFunction
+}
+
 
 function twice() {}
 
@@ -74,4 +146,5 @@ module.exports = {
   genSymFF,
   counter,
   revokable,
+  once,
 };

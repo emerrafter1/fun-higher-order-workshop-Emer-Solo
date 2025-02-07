@@ -24,6 +24,7 @@ const {
   genSymFF,
   counter,
   revokable,
+  once,
 } = require('../index.js');
 
 describe('Higher Order Functions', () => {
@@ -123,11 +124,30 @@ describe('Higher Order Functions', () => {
     });
   });
 
-  //  describe('once', () => {
-  //    it('Add your first test here...', () => {
-  //      // Write your own tests for once
-  //    })
-  //  })
+   describe.only('once', () => {
+
+    // Sample function to test with
+    function returnHello(){
+      return "Hello"
+     }
+
+    it('returns a function on first invocation', () => {
+      const testInputFunction = returnHello;
+      const firstInvoke = once(testInputFunction);
+      expect(typeof firstInvoke).toBe('function');
+    });
+     it('Repeated calls to the function return the same output.', () => {
+       // Write your own tests for once
+       const testInputFunction = returnHello;
+
+       const expected = "Hello"
+       const actual = once(testInputFunction)
+       expect(actual()).toBe(expected) //"Hello"
+       expect(actual()).toBe(expected) //"Hello"
+       expect(actual()).toBe(expected) //"Hello"
+
+     })
+   })
 
   describe('Unary Functions', () => {
     describe('twice', () => {
@@ -160,7 +180,7 @@ describe('Higher Order Functions', () => {
       it('returns a function on first invocation', () => {
         const add2NumsMultiplyBy3rd = composeB(add, multiply);
         expect(typeof add2NumsMultiplyBy3rd).toBe('function');
-      });
+      });once(1)
       it('on second invocation, takes 3 values, using the first two for function #1 then using that returned value and the third parameter for function #2', () => {
         const add2NumsMultiplyBy3rd = composeB(add, multiply);
         expect(add2NumsMultiplyBy3rd(2, 3, 7)).toBe(multiply(add(2, 3), 7));
