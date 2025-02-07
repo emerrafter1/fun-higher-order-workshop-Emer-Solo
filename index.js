@@ -123,10 +123,10 @@ function composeB(binaryFunction1, binaryFunction2) {
 
 function limit(functionToBeCalled, numOfTimes) {
 
-  function binaryFunction(){
+  function binaryFunction(x,y){
       for(let i = 0; i<numOfTimes; i++){
         numOfTimes--
-        functionToBeCalled()
+        return functionToBeCalled(x,y)
       }
   }
 

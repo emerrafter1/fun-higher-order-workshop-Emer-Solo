@@ -176,7 +176,7 @@ describe('Higher Order Functions', () => {
         expect(doubleThenSquare(5)).toBe(100);
       });
     });
-    describe.only('composeB', () => {
+    describe('composeB', () => {
       it('returns a function on first invocation', () => {
         const add2NumsMultiplyBy3rd = composeB(add, multiply);
         expect(typeof add2NumsMultiplyBy3rd).toBe('function');
@@ -186,7 +186,7 @@ describe('Higher Order Functions', () => {
         expect(add2NumsMultiplyBy3rd(2, 3, 7)).toBe(multiply(add(2, 3), 7));
       });
     });
-    describe('limit', () => {
+    describe.only('limit', () => {
       it('returns a function on first invocation', () => {
         const useAddOnceOnly = limit(add, 1);
         expect(typeof useAddOnceOnly).toBe('function');
