@@ -124,7 +124,7 @@ describe('Higher Order Functions', () => {
     });
   });
 
-   describe.only('once', () => {
+   describe('once', () => {
 
     // Sample function to test with
     function returnHello(){
@@ -160,7 +160,7 @@ describe('Higher Order Functions', () => {
         expect(double(3)).toBe(add(3, 3));
       });
     });
-    describe('composeU', () => {
+    describe.only('composeU', () => {
       it('returns a function on first invocation', () => {
         const add100 = (x) => x + 100;
         const add50 = (x) => x + 50;

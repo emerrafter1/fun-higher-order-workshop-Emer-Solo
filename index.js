@@ -88,9 +88,27 @@ function once(inputFunction) {
 }
 
 
-function twice() {}
+function twice(binaryFunction) {
 
-function composeU() {}
+  function unaryFunction(arg1){
+    return binaryFunction(arg1, arg1)
+  }
+
+  return unaryFunction
+}
+
+function composeU(unaryFunc1,unaryFunc2) { //composeU(square, double)
+
+  function unaryFunc3(x){ //squareThenDouble(5)
+    return unaryFunc2(unaryFunc1(x))
+  }
+  return unaryFunc3
+
+}
+
+const squareThenDouble = composeU(square, double);
+expect(squareThenDouble(5)).toBe(50)
+
 
 function composeB() {}
 
