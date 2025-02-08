@@ -143,15 +143,82 @@ function from(startingValue) {
 
 }
 
-function to() {}
 
-function fromTo() {}
+function to(inputGenerator, endValue ) {
 
-function element() {}
+  let value = inputGenerator() //startValue
 
-function collect() {}
+  function generatorFunction(){
+    if (value < endValue) {
+      let currentValue = value;
+      value = inputGenerator(); // Get the next value
+      return currentValue;
+    }
+    return undefined;
+}
+  
+   return generatorFunction;
+}
 
-function filter() {}
+function fromTo(fromValue, toValue) {
+  let value = fromValue
+
+  function fromToGenerator(){
+    if (value < toValue) {
+      let currentValue = value;
+      value++
+      return currentValue;
+    }
+    return undefined;
+
+  }
+
+  return fromToGenerator
+}
+
+function element(arr, generator) {
+  
+  let startingValue = 0
+
+  function arrayValues(x){
+
+    if(generator){
+      return arr[generator(x)]
+    }
+    else{
+      let index = startingValue
+      startingValue ++
+      return arr[index]
+    }
+  }
+  return arrayValues;
+}
+
+function collect(inputGenerator, arr) {
+
+  function generator(x){
+  let value = inputGenerator(x)
+  arr.push(value)
+  return value
+  }
+
+  return generator;
+
+}
+
+function filter(inputGenerator, predicate) {
+  function generator(x){
+    let value = inputGenerator(x)
+
+    if(predicate(value)){
+      return value
+    }
+
+      return undefined
+  
+  }
+  return generator;
+}
 
 function concat() {}
 

@@ -218,7 +218,7 @@ describe('Higher Order Functions', () => {
   });
 
   describe('Generator Functions', () => {
-    describe.only('from', () => {
+    describe('from', () => {
       it('returns a function on first invocation', () => {
         const index = from();
         expect(typeof index).toBe('function');
@@ -329,7 +329,7 @@ describe('Higher Order Functions', () => {
         expect(list).toEqual([0, 1, 2]);
       });
     });
-    describe('filter', () => {
+    describe.only('filter', () => {
       it('returns a function', () => {
         expect(typeof filter()).toBe('function');
       });
